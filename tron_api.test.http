@@ -1,0 +1,25 @@
+POST https://nile.trongrid.io/walletsolidity/gettransactionbyid
+Content-Type: application/json
+#TRON-PRO-API-KEY: 03f4ba5-5e39-446b-ad0f-603f1e4dc39a
+
+{
+  "value": "de8dd5a06ef0ed93e62b07775bef0e72660b5a559968f8ba806663ec0778f65a"
+}
+
+###
+GET https://nile.trongrid.io/v1/accounts/TDd6SSQ1tYnekfLLEmV3q2wDiFQEm9kxuV/transactions/trc20
+
+###
+GET https://api.trongrid.io/v1/accounts/TJXAhh72rwzC8xfPRKZioC5dmEVQMoLoLo/transactions/trc20
+
+###
+POST https://nile.trongrid.io/wallet/freezebalancev2
+Content-Type: application/json
+Accept: application/json
+
+{
+  "owner_address": "TCaHT65bCHb8us8kCVE4BAPqBVEGYwHE8f",
+  "frozen_balance": 1000000000,
+  "resource": "ENERGY",
+  "visible": true
+}

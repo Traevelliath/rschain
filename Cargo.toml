@@ -1,12 +1,13 @@
 [workspace]
 resolver = "2"
-members = ["anychain-core", "anychain-tron", "anychain-ethereum"]
+members = ["rschain-core", "rschain-tron", "rschain-ethereum"]
 
 [workspace.package]
 authors = ["Traevelliath"]
 edition = "2021"
 
 [workspace.dependencies]
+rschain-core = { path = "rschain-core", package = "rschain-core", version = "1.0.0" }
 sha3 = "0.10.1"
 thiserror = "1.0"
 ethereum-types = "0.14.1"

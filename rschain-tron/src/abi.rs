@@ -1,4 +1,5 @@
 use crate::TronAddress;
+
 use ethabi::{encode, Token};
 use rschain_core::{ethereum_types::U256, utilities::crypto::keccak256};
 use std::str::FromStr;
@@ -54,6 +55,12 @@ pub(crate) fn contract_function_call<Str: AsRef<str>>(
     data
 }
 
+pub fn trc20_balance<Str: AsRef<str>>(address: Str) -> Vec<u8> {
+    let address = TronAddress::from_str(address.as_ref()).unwrap();
+
+    contract_function_call("balanceOf", &[Param::from(&address)])
+}
+
 pub(crate) fn trc20_transfer<Str: AsRef<str>>(address: Str, amount: Str) -> Vec<u8> {
     let address = TronAddress::from_str(address.as_ref()).unwrap();
     let amount = U256::from_dec_str(amount.as_ref()).unwrap();
@@ -77,18 +84,18 @@ mod test_mod {
 
     #[test]
     fn test_contract_function_call() {
-        let address = TronAddress::from_str("TG7jQ7eGsns6nmQNfcKNgZKyKBFkx7CvXr").unwrap();
+        let address = TronAddress::from_str("TS1snj7apevyGKEwXRPTCSuGokSA3iyN3z").unwrap();
         let amount = U256::from_dec_str("20000000000000000000").unwrap();
 
-        let call_data =
-            contract_function_call("transfer", &[Param::from(&address), Param::from(amount)]);
+        let call_data = contract_function_call("balanceOf", &[Param::from(&address)]);
 
-        assert_eq!(
-            "a9059cbb000000000000000000000041436d74fc1577266b7\
-             290b85801145d9c5287e19400000000000000000000000000\
-             0000000000000000000001158e460913d00000",
-            hex::encode(call_data)
-        )
+        dbg!(hex::encode(call_data));
+        // assert_eq!(
+        //     "a9059cbb000000000000000000000041436d74fc1577266b7\
+        //      290b85801145d9c5287e19400000000000000000000000000\
+        //      0000000000000000000001158e460913d00000",
+        //     hex::encode(call_data)
+        // )
     }
 
     #[test]

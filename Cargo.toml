@@ -41,7 +41,7 @@ forest_encoding = "0.2.2"
 cid = "0.11.1"
 base64 = "0.22.0"
 bytes = "1.0"
-protobuf = "3.4.0" #do not update
+protobuf = "=3.4.0" #do not update
 chrono = "0.4"
 ethabi = "18.0.0"
 regex = "1.10.4"
